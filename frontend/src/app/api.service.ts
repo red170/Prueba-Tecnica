@@ -10,6 +10,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
+  login(credentials: any): Observable<any> {
+    return this.http.post(`${this.url}/login`, credentials);
+  }
+
   getDepartamentos(): Observable<any[]> {
     return this.http.get<any[]>(`${this.url}/departamentos`);
   }
@@ -20,5 +24,13 @@ export class ApiService {
 
   registrarMunicipio(data: any): Observable<any> {
     return this.http.post(`${this.url}/municipios`, data);
+  }
+
+  actualizarMunicipio(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.url}/municipios/${id}`, data);
+  }
+
+  eliminarMunicipio(id: number): Observable<any> {
+    return this.http.delete(`${this.url}/municipios/${id}`);
   }
 }
